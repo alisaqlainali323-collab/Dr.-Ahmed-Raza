@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Allow requests from your site (adjust origin if you want to lock it down later)
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -33,9 +33,9 @@ export default async function handler(req, res) {
     if (!groqResp.ok) {
       return res.status(groqResp.status).json({ error: data.error?.message || "Groq API error" });
     }
-Add chat API function
+
     return res.status(200).json(data);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
-}
+};
